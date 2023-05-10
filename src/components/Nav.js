@@ -8,13 +8,13 @@ import { get, child, ref } from "firebase/database";
 
 const Nav = props => {
 
-    const { cart, setCart } = useContext(DataContext);
+    const { plan, setPlan } = useContext(DataContext);
 
     const auth = useAuth();
     
 
-    const { data: user } = useUser();  // this gets our user object
-    const { signinStatus } = useSigninCheck();  // is there a user signed in or not?
+    const { data: user } = useUser();
+    const { signinStatus } = useSigninCheck();
 
     const db = useDatabase();
 
@@ -26,15 +26,15 @@ const Nav = props => {
     }
     const signout = async () => {
         await signOut(auth);
-        setCart({size:0, total:0, products: {}})
+        setPlan({size:0, total:0, exercise: {}})
     }
 
     useEffect(() => {
         if (user){
-            get(child(ref(db), `carts/${user.uid}`)).then((snapshot) => {
+            get(child(ref(db), `plans/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                   console.log(snapshot.val());
-                  setCart(snapshot.val());
+                  setPlan(snapshot.val());
                 } else {
                   console.log("No data available");
                 }
@@ -49,8 +49,8 @@ const Nav = props => {
             <nav className="navbar navbar-expand-sm navbar-light bg-secondary">
                 <div className="container-fluid">
                     <Link className="nav-item nav-link active" to='/'>Home</Link>
-                    <Link className="nav-item nav-link active" to='/shop'>Shop</Link>
-                    <Link className="nav-item nav-link active" to='/cart'>Cart</Link>
+                    <Link className="nav-item nav-link active" to='/search'>Search</Link>
+                    <Link className="nav-item nav-link active" to='/plan'>Workout Plan</Link>
                     {
                         signinStatus === 'loading' ?
                             <button className="btn btn-primary" disabled>Waiting. . .  to. . . .  log . . .  in</button> :
@@ -62,15 +62,12 @@ const Nav = props => {
                                 <button className="btn btn-primary w-25" onClick={signin}>Login</button>
                     }
                     {
-                        props.admin.in ? <Link className="nav-link" to='/adminhome'><i className="fa-solid fa-lock-open"></i></Link>
+                        props.admin? <Link className="nav-link" to='/adminhome'><i className="fa-solid fa-lock-open"></i></Link>
                         :
                         <Link className="nav-link" to='/adminsignin'><i className="fa-solid fa-lock"></i></Link>
                     }
                     
-                    {cart.size === 0 ?
-                        <span id="r-span"><Link className="nav-item nav-link active" to='/shop'><i className="fa-solid fa-cart-shopping"></i></Link></span> :
-                        <span id="r-span"><Link className="nav-item nav-link active" to='/cart'>{cart.size} - ${cart.total.toFixed(2)} <i className="fa-solid fa-cart-shopping"></i></Link></span>
-                    }
+                    
                 </div>
             </nav>
         </div>

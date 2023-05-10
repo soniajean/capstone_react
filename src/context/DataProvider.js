@@ -1,11 +1,10 @@
 import { createContext, useState } from "react";
 
 const DataProvider = props => {
-    // declare state variables here
-    // we can then set up as a global context accessible by all children
-    const [cart, setCart] = useState({size:0, total:0, products: {}});
+
+    const [plan, setPlan] = useState({size:0, total:0, exercise: {}});
     return(
-        <DataContext.Provider value={{'cart': cart, 'setCart': setCart}}>
+        <DataContext.Provider value={{'plan': plan, 'setPlan': setPlan}}>
             {props.children}
         </DataContext.Provider>
     )

@@ -11,17 +11,17 @@ const stripePromise = loadStripe("pk_test_51N1wQUHVXK2z2vrp0KHs9YjWXYo9D04dnMxoF
 const Checkout = () => {
 
     const [clientSecret, setClientSecret] = useState('');
-    const { cart } = useContext(DataContext);
+    const { plan } = useContext(DataContext);
     const{data:user} = useUser();
 
     useEffect(() => {
         // create payment intent as soon as this component FIRST renders 
         // with an API call to flask
         console.log(user);
-        fetch("https://ecomproj.onrender.com/pay/create-payment-intent", {
+        fetch("https://final-flask-ocx8.onrender.com/pay/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({'cart':cart, 'user':user}),
+            body: JSON.stringify({'plan':plan, 'user':user}),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
