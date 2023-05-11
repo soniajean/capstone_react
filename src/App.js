@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './views/Home';
 import Search from './views/Search';
-import Workoutplan from './views/Workoutplan';
+import Plan from './views/Plan';
 import Exercise from './views/Exercise';
 // import Checkout from './views/Checkout';
 
@@ -21,7 +21,7 @@ function App() {
       <Routes>
       <Route children path='/' element={<Home />} />
       <Route children path='/shop' element={<Search />} />
-      <Route children path='/cart' element={<Workoutplan />} />
+      <Route children path='/cart' element={<Plan />} />
       <Route children path='/Exercise/:exerciseId' element={<Exercise />} />
       {/* <Route children path='/checkout' element={<Checkout />} /> */}
       
