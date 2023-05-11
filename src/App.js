@@ -4,10 +4,10 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './views/Home';
-import Search from './views/Search';
+import Exercises from './views/Exercises';
 import Plan from './views/Plan';
-import Exercise from './views/Exercise';
-// import Checkout from './views/Checkout';
+import Register from './components/Register'
+
 
 
 
@@ -20,11 +20,10 @@ function App() {
       <Nav />
       <Routes>
       <Route children path='/' element={<Home />} />
-      <Route children path='/shop' element={<Search />} />
+      <Route children path='/exercises' element={<Exercises/>} />
       <Route children path='/cart' element={<Plan />} />
-      <Route children path='/Exercise/:exerciseId' element={<Exercise />} />
       {/* <Route children path='/checkout' element={<Checkout />} /> */}
-      
+      <Route children path='/register' element={<Register />} />
       
       
       
