@@ -16,8 +16,8 @@ const Nav = props => {
                 <div className="container-fluid">
                     <Link className="nav-item nav-link active" to='/'>Home</Link>
                     <Link className="nav-item nav-link active" to='/exercises'>Exercises</Link>
-                    <Link className="nav-item nav-link active" to='/login'>Login</Link>
-                    <Link className="nav-item nav-link active" to='/register'>Register</Link>
+                    <Link className="nav-item nav-link active" to='/Login'>Login</Link>
+                    <Link className="nav-item nav-link active" to='/Register'>Register</Link>
             
                     
                 </div>
